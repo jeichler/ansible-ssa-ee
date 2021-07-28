@@ -1,0 +1,10 @@
+---
+collections:
+  - name: awx.awx
+    version: 19.1.0
+  - amazon.aws
+  - community.aws
+  - https://gitlab.com/redhat-cop/ansible-ssa/ansible-ssa-collection/-/raw/master/ansible_ssa-common-2.1.0.tar.gz
+  - community.crypto
+  - google.cloud
+  - azure.azcollection
