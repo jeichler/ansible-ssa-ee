@@ -13,7 +13,7 @@ This repository is set to private since we are not allowed to share EE's based o
 podman login registry.gitlab.com
 # upload the image with the proper tag
 # e.g tag=0.0.1
-podman push ee-ansible-ssa:$tag registry.gitlab.com/redhat-cop/ansible-ssa/ee-ansible-ssa/ee-ansible-ssa:$tagp
+podman push ee-ansible-ssa:$tag registry.gitlab.com/redhat-cop/ansible-ssa/ee-ansible-ssa/ee-ansible-ssa:$tag
 podman push ee-ansible-ssa:$tag registry.gitlab.com/redhat-cop/ansible-ssa/ee-ansible-ssa/ee-ansible-ssa:latest
 ```
 
