@@ -1,10 +1,18 @@
 ---
 collections:
-  - name: awx.awx
-    version: 19.1.0
-  - amazon.aws
-  - community.aws
-  - https://gitlab.com/redhat-cop/ansible-ssa/ansible-ssa-collection/-/raw/master/ansible_ssa-common-2.1.0.tar.gz
-  - community.crypto
-  - google.cloud
-  - azure.azcollection
+  - name: amazon.aws
+    version: 1.5.0
+  - name: ansible.controller
+    version: 4.0.0
+  - name: ansible.posix
+    version: 1.3.0
+  - name: ansible_ssa.general
+    version: 3.0.2
+  - name: community.aws
+    version: 1.5.0
+  - name: community.crypto
+    version: 1.8.0
+  - name: community.general
+    version: 3.5.0
+  - name: freeipa.ansible_freeipa
+    version: 0.3.8
