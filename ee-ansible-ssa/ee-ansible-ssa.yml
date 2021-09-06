@@ -8,7 +8,7 @@ dependencies:
 build_arg_defaults:
   EE_BASE_IMAGE: registry.redhat.io/ansible-automation-platform-20-early-access/ee-supported-rhel8
 
-ansible_config: /path/to/.ansible.cfg
+ansible_config: /home/chris/.ansible.cfg
 
 additional_build_steps:
   prepend: |
