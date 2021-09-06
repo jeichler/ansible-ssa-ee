@@ -44,5 +44,11 @@ The `--eei` command line option allows you to specify which execution environmen
 ansible-navigator:
   execution-environment:
     pull-policy: missing
-    image: <name-of-execution-environment>
+    image: registry.gitlab.com/redhat-cop/ansible-ssa/ee-ansible-ssa/ee-ansible-ssa
+```
+
+**NOTE:** If `pull-policy` is set to `missing`, updated container images are not automatically downloaded. Either set the policy to `always` or manually check to make sure you use the latest version. You can manually fetch the latest image by running:
+
+```bash
+podman pull registry.gitlab.com/redhat-cop/ansible-ssa/ee-ansible-ssa/ee-ansible-ssa
 ```
