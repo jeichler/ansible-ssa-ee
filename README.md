@@ -2,12 +2,6 @@
 
 ansible-builder configuration for building an Execution Environment for the [Ansible SSA](https://www.ansible-labs.de) project.
 
-## Red Hat Employees
-
-If you work Red Hat you can log into the [GitLab Consulting instance](https://gitlab.consulting.redhat.com/) and fetch the pre-compiled images from there. Log in with your SAML account and follow the instructions in the
-
-**NOTE:** These images are only provided for your convenience and require an active Red Hat Ansible Automation Platform Subscription!
-
 ## Code only
 
 This project contains the execution environment definition file, but does not provide the actual container image. This is due to the requirement of having an active Red Hat Ansible Automation Platform subscription to be able to download some of the Collections used and the base [ee-supported-rhel8](https://catalog.redhat.com/software/containers/ansible-automation-platform-20-early-access/ee-supported-rhel8/60e4bc63c1af85c3015b8588) container image.
@@ -19,9 +13,11 @@ To build the container image [ansible-builder](https://github.com/ansible/ansibl
 ## Build image
 
 ```bash
+# log into the Red Hat registry to be able to pull the ee-supported-rhel8
+podman login registry.redhat.io
 cd ee-ansible-ssa
 # -v 3 is optional and will increase the output details
-ansible-builder -f ee-ansible-ssa.yml -v 3
+ansible-builder build -f ee-ansible-ssa.yml -v 3
 ```
 
 ## Ansible Navigator
