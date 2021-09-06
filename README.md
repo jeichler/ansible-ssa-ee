@@ -19,7 +19,7 @@ To build the container image [ansible-builder](https://github.com/ansible/ansibl
 podman login registry.redhat.io
 cd ee-ansible-ssa
 # set tag to the proper version, e.g
-tag=0.1.2
+tag=0.1.3
 ansible-builder build -f ee-ansible-ssa.yml -t ee-ansible-ssa:$tag
 # you might want to add -v 3 to get more details
 ansible-builder build -f ee-ansible-ssa.yml -t ee-ansible-ssa:$tag -v 3
