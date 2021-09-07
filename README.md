@@ -12,6 +12,8 @@ This project contains the execution environment definition file, but does not pr
 
 To build the container image [ansible-builder](https://github.com/ansible/ansible-builder) has to be installed. It can also be retrieved from Red Hat and [installed via the Software Channel](https://access.redhat.com/documentation/en-us/red_hat_ansible_automation_platform/2.0-ea/html-single/ansible_builder_guide/index#proc-installing-builder).
 
+If you want to use your own instance of private automation hub, use the provided [requirements-galaxy.yml](./requirements-galaxy.yml) to synchronize the required collections.
+
 ## Build image
 
 ```bash

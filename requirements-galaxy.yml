@@ -1,0 +1,9 @@
+---
+collections:
+  - awx.awx
+  - amazon.aws
+  - ansible.posix
+  - community.aws
+  - community.crypto
+  - community.general
+  - freeipa.ansible_freeipa
