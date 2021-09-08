@@ -20,12 +20,12 @@ If you want to use your own instance of private automation hub, use the provided
 # log into the Red Hat registry to be able to pull the ee-supported-rhel8
 podman login registry.redhat.io
 # pull latest version of the image
-registry.redhat.io/ansible-automation-platform-20-early-access/ee-supported-rhel8
+podman pull registry.redhat.io/ansible-automation-platform-20-early-access/ee-supported-rhel8
 # make sure helper images are up to date
 podman pull quay.io/ansible/ansible-builder
 cd ee-ansible-ssa
 # set tag to the proper version, e.g
-tag=0.1.4
+tag=0.1.5
 ansible-builder build -f ee-ansible-ssa.yml -t ee-ansible-ssa:$tag
 # you might want to add -v 3 to get more details
 ansible-builder build -f ee-ansible-ssa.yml -t ee-ansible-ssa:$tag -v 3
