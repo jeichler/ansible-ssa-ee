@@ -7,3 +7,5 @@ collections:
   - community.crypto
   - community.general
   - freeipa.ansible_freeipa
+  - theforeman.foreman
+
