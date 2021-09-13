@@ -55,6 +55,27 @@ ansible-navigator:
 
 **NOTE:** If `pull-policy` is set to `missing`, updated container images are not automatically downloaded. Either set the policy to `always` or manually check to make sure you use the latest version. You can manually fetch the latest image by running:
 
+## Example on how to run the Playbook
+
+It is recommended to keep all your cloud credentials in an variable file, so it's easier to reuse.
+
 ```bash
-podman pull registry.gitlab.com/redhat-cop/ansible-ssa/ee-ansible-ssa/ee-ansible-ssa
+# source environment variables
+$ . ~/path/to//cloud-env/all
+# cat example
+$ cat ~/path/to//cloud-env/all
+export AWS_ACCESS_KEY_ID=''
+export AWS_SECRET_ACCESS_KEY=''
+export AZURE_SECRET=
+export AZURE_CLIENT_ID=
+export AZURE_SUBSCRIPTION_ID=
+export AZURE_TENANT=
+export GCP_AUTH_KIND=serviceaccount
+export GCP_SERVICE_ACCOUNT_FILE=~/.gcp.json
+export GCP_PROJECT=
+export CONTROLLER_HOST=
+export CONTROLLER_USERNAME=admin
+export CONTROLLER_PASSWORD=
+export CONTROLLER_VERIFY_SSL=false
+$ ansible-navigator run controller-setup.yml -e @/path/to/variables/main.yml -e @/path/to/variables/vault.yml --vault-password-file /path/to/.vault
 ```
