@@ -4,6 +4,7 @@
         "EE's",
         "freeipa",
         "podman",
-        "posix"
+        "posix",
+        "theforeman"
     ]
 }

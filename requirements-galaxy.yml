@@ -3,9 +3,10 @@ collections:
   - awx.awx
   - amazon.aws
   - ansible.posix
+  - chocolatey.chocolatey
   - community.aws
   - community.crypto
   - community.general
+  - community.windows
   - freeipa.ansible_freeipa
   - theforeman.foreman
-

@@ -10,7 +10,7 @@ This project contains the execution environment definition file, but does not pr
 
 ## Requirements
 
-To build the container image [ansible-builder](https://github.com/ansible/ansible-builder) has to be installed. It can also be retrieved from Red Hat and [installed via the Software Channel](https://access.redhat.com/documentation/en-us/red_hat_ansible_automation_platform/2.0-ea/html-single/ansible_builder_guide/index#proc-installing-builder).
+To build the container image [ansible-builder](https://github.com/ansible/ansible-builder) has to be installed. It can be installed with `pip install ansible-builder` or retrieved from Red Hat and [installed via the Software Channel](https://access.redhat.com/documentation/en-us/red_hat_ansible_automation_platform/2.0-ea/html-single/ansible_builder_guide/index#proc-installing-builder).
 
 If you want to use your own instance of private automation hub, use the provided [requirements-galaxy.yml](./requirements-galaxy.yml) to synchronize the required collections.
 
@@ -25,7 +25,7 @@ podman pull registry.redhat.io/ansible-automation-platform-20-early-access/ee-su
 podman pull quay.io/ansible/ansible-builder
 cd ee-ansible-ssa
 # set tag to the proper version, e.g
-tag=0.1.7
+tag=0.2.0
 ansible-builder build -f ee-ansible-ssa.yml -t ee-ansible-ssa:$tag
 # you might want to add -v 3 to get more details
 ansible-builder build -f ee-ansible-ssa.yml -t ee-ansible-ssa:$tag -v 3
@@ -54,6 +54,10 @@ ansible-navigator:
 ```
 
 **NOTE:** If `pull-policy` is set to `missing`, updated container images are not automatically downloaded. Either set the policy to `always` or manually check to make sure you use the latest version. You can manually fetch the latest image by running:
+
+```bash
+podman pull registry.gitlab.com/redhat-cop/ansible-ssa/ee-ansible-ssa/ee-ansible-ssa
+```
 
 ## Example on how to run the Playbook
 
