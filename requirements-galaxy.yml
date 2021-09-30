@@ -3,6 +3,7 @@ collections:
   - awx.awx
   - amazon.aws
   - ansible.posix
+  - azure.azcollection
   - chocolatey.chocolatey
   - community.aws
   - community.crypto
