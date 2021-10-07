@@ -14,6 +14,21 @@ To build the container image [ansible-builder](https://github.com/ansible/ansibl
 
 If you want to use your own instance of private automation hub, use the provided [requirements-galaxy.yml](./requirements-galaxy.yml) to synchronize the required collections.
 
+## Collections
+
+To successfully build this execution environment a number of collections have to be available on automation hub. Sync Ansible Galaxy content with the provided `requirements-galaxy.yml` file (import it in the Repository Management dialog of the automation hub UI).
+
+Also synchronize the following certified content from Red Hat Automation Hub. Log into [console.redhat.com](console.redhat.com) and enable the sync for the following collections:
+
+- name: amazon.aws
+- name: ansible.controller
+- name: ansible.posix
+- name: ansible.windows
+- name: azure.azcollection
+- name: chocolatey.chocolatey
+
+Check the [requirements.yml](./ee-ansible-ssa/requirements.yml) for specific versions and additional details.
+
 ## Build image
 
 ```bash

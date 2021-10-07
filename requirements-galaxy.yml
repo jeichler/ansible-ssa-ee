@@ -1,10 +1,7 @@
 ---
+# this only lists collections synced from Ansible Galaxy
 collections:
   - awx.awx
-  - amazon.aws
-  - ansible.posix
-  - azure.azcollection
-  - chocolatey.chocolatey
   - community.aws
   - community.crypto
   - community.general
