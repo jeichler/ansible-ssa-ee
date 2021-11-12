@@ -22,5 +22,7 @@ collections:
     version: 3.5.0
   - name: community.windows
     version: 1.7.0
+  - name: containers.podman
+    version: 1.8.2
   - name: freeipa.ansible_freeipa
     version: 0.3.8

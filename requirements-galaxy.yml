@@ -1,10 +1,10 @@
 ---
 # this only lists collections synced from Ansible Galaxy
 collections:
-  - awx.awx
   - community.aws
   - community.crypto
   - community.general
   - community.windows
+  - containers.podman
   - freeipa.ansible_freeipa
   - theforeman.foreman
