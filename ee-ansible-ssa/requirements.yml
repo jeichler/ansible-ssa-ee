@@ -9,7 +9,7 @@ collections:
   - name: ansible.windows
     version: 1.7.2
   - name: ansible_ssa.general
-    version: 3.2.23
+    version: 3.2.25
   - name: azure.azcollection
     version: 1.9.0
   - name: chocolatey.chocolatey
