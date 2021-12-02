@@ -41,7 +41,7 @@ podman pull registry.redhat.io/ansible-automation-platform-20-early-access/ee-su
 podman pull quay.io/ansible/ansible-builder
 cd ee-ansible-ssa
 # set tag to the proper version, e.g
-tag=0.4.6
+tag=0.4.7
 ansible-builder build -f ee-ansible-ssa.yml -t ee-ansible-ssa:$tag
 # you might want to add -v 3 to get more details
 ansible-builder build -f ee-ansible-ssa.yml -t ee-ansible-ssa:$tag -v 3
