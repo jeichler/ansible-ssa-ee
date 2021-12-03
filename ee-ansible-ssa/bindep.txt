@@ -1,1 +1,2 @@
 bind-utils [platform:rpm]
+skopeo [platform:rpm]
