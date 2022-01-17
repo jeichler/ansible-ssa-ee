@@ -1,13 +1,4 @@
 ---
-- name: make sure ansible-builder is installed
-  ansible.builtin.yum:
-    name: ansible-builder
-    state: present
-  become: true
-  when:
-    - ansible_distribution == "RedHat"
-    - ansible_distribution_major_version == "8"
-
 - name: log into Red Hat registry
   containers.podman.podman_login:
     username: "{{ registry_redhat_username }}"
