@@ -1,25 +1,21 @@
 ---
-- name: log into Red Hat registry
-  containers.podman.podman_login:
-    username: "{{ registry_redhat_username }}"
-    password: "{{ registry_redhat_password }}"
-    registry: registry.redhat.io
+# - name: log into GitLab registry
+#   containers.podman.podman_login:
+#     username: "{{ registry_gitlab_username }}"
+#     password: "{{ registry_gitlab_password }}"
+#     registry: registry.gitlab.com
 
-- name: log into GitLab registry
-  containers.podman.podman_login:
-    username: "{{ registry_gitlab_username }}"
-    password: "{{ registry_gitlab_password }}"
-    registry: registry.gitlab.com
-
-- name: log into private automation hub
-  containers.podman.podman_login:
-    username: "{{ registry_ah_username }}"
-    password: "{{ registry_ah_password }}"
-    registry: ah.bolzchristian.de
+# - name: log into private automation hub
+#   containers.podman.podman_login:
+#     username: "{{ registry_ah_username }}"
+#     password: "{{ registry_ah_password }}"
+#     registry: ah.bolzchristian.de
 
 - name: pull latest version of ee-supported-rhel8
   containers.podman.podman_image:
     name: registry.redhat.io/ansible-automation-platform-20-early-access/ee-supported-rhel8
+    username: "{{ registry_redhat_username }}"
+    password: "{{ registry_redhat_password }}"
 
 - name: pull latest version of ansible-builder
   containers.podman.podman_image:
