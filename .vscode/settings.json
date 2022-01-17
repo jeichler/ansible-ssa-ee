@@ -6,6 +6,7 @@
         "freeipa",
         "podman",
         "posix",
+        "skopeo",
         "theforeman"
     ]
 }

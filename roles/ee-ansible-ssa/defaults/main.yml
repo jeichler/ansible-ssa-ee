@@ -1,0 +1,11 @@
+---
+ansible_ssa_tag: 0.4.11
+
+registry_redhat_username: rhn-gps-cbolz
+registry_redhat_password: "{{ vault_registry_redhat_password }}"
+
+registry_gitlab_username: podman
+registry_gitlab_password: "{{ vault_registry_gitlab_password }}"
+
+registry_ah_username: admin
+registry_ah_password: "{{ vault_registry_ah_password }}"

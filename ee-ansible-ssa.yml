@@ -1,0 +1,7 @@
+---
+- name: build Ansible SSA EE
+  hosts: localhost
+  gather_facts: false
+
+  roles:
+    - ee-ansible-ssa
