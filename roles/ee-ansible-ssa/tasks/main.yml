@@ -17,13 +17,13 @@
     password: "{{ registry_ah_password }}"
     registry: ah.bolzchristian.de
 
-- name: pull latest version of ee-supported-rhel8
+- name: pull latest version of ee-supported-rhel8 image
   containers.podman.podman_image:
-    name: registry.redhat.io/ansible-automation-platform-20-early-access/ee-supported-rhel8
+    name: registry.redhat.io/ansible-automation-platform-21/ee-supported-rhel8
 
-- name: pull latest version of ansible-builder
+- name: pull latest version of ansible-builder image
   containers.podman.podman_image:
-    name: quay.io/ansible/ansible-builder
+    name: registry.redhat.io/ansible-automation-platform-21/ansible-builder-rhel8
 
 - name: get image information
   containers.podman.podman_image_info:
