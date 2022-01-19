@@ -1,5 +1,5 @@
 ---
-ansible_ssa_tag: 0.4.ZRELEASE
+ansible_ssa_tag: 0.5.ZRELEASE
 
 registry_redhat_username: rhn-gps-cbolz
 registry_redhat_password: "{{ vault_registry_redhat_password }}"
