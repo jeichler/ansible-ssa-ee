@@ -42,9 +42,9 @@
     name: ee-ansible-ssa
     push: true
     pull: false
-    tag: "{{ item }}"
+    tag: "{{ ansible_ssa_tag }}"
     push_args:
-      dest: registry.gitlab.com/redhat-cop/ansible-ssa/ee-ansible-ssa
+      dest: registry.gitlab.com/redhat-cop/ansible-ssa/ee-ansible-ssa:{{ item }}
   loop:
     - "{{ ansible_ssa_tag }}"
     - latest
@@ -54,9 +54,9 @@
     name: ee-ansible-ssa
     push: true
     pull: false
-    tag: "{{ item }}"
+    tag: "{{ ansible_ssa_tag }}"
     push_args:
-      dest: ah.bolzchristian.de/ee-ansible-ssa
+      dest: ah.bolzchristian.de/ee-ansible-ssa:{{ item }}
   loop:
     - "{{ ansible_ssa_tag }}"
     - latest
