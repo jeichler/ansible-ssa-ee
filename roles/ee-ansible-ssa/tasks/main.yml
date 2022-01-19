@@ -25,12 +25,12 @@
   containers.podman.podman_image:
     name: registry.redhat.io/ansible-automation-platform-21/ansible-builder-rhel8
 
-- name: get image information
+- name: get image information for EE ee-ansible-ssa:{{ ansible_ssa_tag }}
   containers.podman.podman_image_info:
     name: ee-ansible-ssa:{{ ansible_ssa_tag }}
   register: ansible_ssa_image
 
-- name: build the new EE if it doesn't exist (this might take a few minutes)
+- name: build the new EE version {{ ansible_ssa_tag }} (this might take a few minutes)
   ansible.builtin.command: ansible-builder build -f ee-ansible-ssa.yml -t ee-ansible-ssa:{{ ansible_ssa_tag }} -v 3
   args:
     chdir: ee-ansible-ssa
