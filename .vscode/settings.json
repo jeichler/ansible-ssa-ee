@@ -3,10 +3,13 @@
         "azcollection",
         "bindep",
         "EE's",
+        "epel",
         "freeipa",
+        "nsupdate",
         "podman",
         "posix",
         "skopeo",
-        "theforeman"
+        "theforeman",
+        "ZRELEASE"
     ]
 }

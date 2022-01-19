@@ -1,0 +1,22 @@
+stages:
+  - build
+
+build:
+  stage: build
+  before_script:
+    - declare -i ZRELEASE=`cat .z-release`
+    - sed -i -e s/ZRELEASE/$ZRELEASE/ roles/ee-ansible-ssa/defaults/main.yml
+    - ZRELEASE+=1
+    - echo $ZRELEASE > .z-release
+    - git config --global user.name "${GITLAB_USER_NAME}"
+    - git config --global user.email "${GITLAB_USER_EMAIL}"
+    - git submodule foreach git checkout main
+    - git submodule foreach git pull --ff-only
+  script:
+    - ansible-playbook ee-ansible-ssa.yml
+    - git add .z-release
+    - git commit -m "[skip ci] automated build of execution environment"
+    - git push "https://${GITLAB_USER_NAME}:${CI_GIT_TOKEN}@${CI_REPOSITORY_URL#*@}" HEAD:${CI_COMMIT_REF_NAME}
+  only:
+    - main
+    - release
