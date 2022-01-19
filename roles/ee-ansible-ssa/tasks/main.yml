@@ -37,12 +37,17 @@
   when:
     - ansible_ssa_image.images == []
 
+- name: apply image tags locally
+  containers.podman.podman_tag:
+    image: ee-ansible-ssa:{{ ansible_ssa_tag }}
+    target_names: ee-ansible-ssa:latest
+
 - name: push the EE to private GitLab registry
   containers.podman.podman_image:
     name: ee-ansible-ssa
     push: true
     pull: false
-    tag: "{{ ansible_ssa_tag }}"
+    tag: "{{ item }}"
     push_args:
       dest: registry.gitlab.com/redhat-cop/ansible-ssa/ee-ansible-ssa:{{ item }}
   loop:
@@ -54,7 +59,7 @@
     name: ee-ansible-ssa
     push: true
     pull: false
-    tag: "{{ ansible_ssa_tag }}"
+    tag: "{{ item }}"
     push_args:
       dest: ah.bolzchristian.de/ee-ansible-ssa:{{ item }}
   loop:
