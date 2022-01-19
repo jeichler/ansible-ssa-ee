@@ -1,0 +1,67 @@
+---
+- name: log into Red Hat registry
+  containers.podman.podman_login:
+    username: "{{ registry_redhat_username }}"
+    password: "{{ registry_redhat_password }}"
+    registry: registry.redhat.io
+
+- name: log into GitLab registry
+  containers.podman.podman_login:
+    username: "{{ registry_gitlab_username }}"
+    password: "{{ registry_gitlab_password }}"
+    registry: registry.gitlab.com
+
+- name: log into private automation hub
+  containers.podman.podman_login:
+    username: "{{ registry_ah_username }}"
+    password: "{{ registry_ah_password }}"
+    registry: ah.bolzchristian.de
+
+- name: pull latest version of ee-supported-rhel8 image
+  containers.podman.podman_image:
+    name: registry.redhat.io/ansible-automation-platform-21/ee-supported-rhel8
+
+- name: pull latest version of ansible-builder image
+  containers.podman.podman_image:
+    name: registry.redhat.io/ansible-automation-platform-21/ansible-builder-rhel8
+
+- name: get image information
+  containers.podman.podman_image_info:
+    name: ee-ansible-ssa:{{ ansible_ssa_tag }}
+  register: ansible_ssa_image
+
+- name: build the new EE if it doesn't exist (this might take a few minutes)
+  ansible.builtin.command: ansible-builder build -f ee-ansible-ssa.yml -t ee-ansible-ssa:{{ ansible_ssa_tag }} -v 3
+  args:
+    chdir: ee-ansible-ssa
+  when:
+    - ansible_ssa_image.images == []
+
+- name: apply image tags locally
+  containers.podman.podman_tag:
+    image: ee-ansible-ssa:{{ ansible_ssa_tag }}
+    target_names: ee-ansible-ssa:latest
+
+- name: push the EE to private GitLab registry
+  containers.podman.podman_image:
+    name: ee-ansible-ssa
+    push: true
+    pull: false
+    tag: "{{ item }}"
+    push_args:
+      dest: registry.gitlab.com/redhat-cop/ansible-ssa/ee-ansible-ssa:{{ item }}
+  loop:
+    - "{{ ansible_ssa_tag }}"
+    - latest
+
+- name: push the EE to private automation hub
+  containers.podman.podman_image:
+    name: ee-ansible-ssa
+    push: true
+    pull: false
+    tag: "{{ item }}"
+    push_args:
+      dest: ah.bolzchristian.de/ee-ansible-ssa:{{ item }}
+  loop:
+    - "{{ ansible_ssa_tag }}"
+    - latest
