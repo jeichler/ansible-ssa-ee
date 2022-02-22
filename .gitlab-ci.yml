@@ -20,3 +20,6 @@ build:
   only:
     - main
     - release
+  artifacts:
+    paths:
+      - ee-ansible-ssa/ansible-builder.log
