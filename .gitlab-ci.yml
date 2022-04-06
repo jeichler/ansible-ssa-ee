@@ -13,6 +13,7 @@ build:
     - git submodule foreach git checkout main
     - git submodule foreach git pull --ff-only
   script:
+    - ansible-galaxy collection install -r collections/requirements.yml -f
     - ansible-playbook ee-ansible-ssa.yml
     - git add .z-release
     - git commit -m "[skip ci] automated build of execution environment"
