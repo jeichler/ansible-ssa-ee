@@ -5,12 +5,12 @@ stages:
 
 build:
   stage: build
-  scripts:
+  script:
     - ansible-galaxy collection install -r collections/requirements.yml -f
 
 check:
   stage: check
-  scripts:
+  script:
     - ansibe-lint ee-ansible-ssa.yml
 
 deploy:
