@@ -11,7 +11,7 @@ build:
 check:
   stage: check
   script:
-    - ansibe-lint ee-ansible-ssa.yml
+    - ansible-lint ee-ansible-ssa.yml
 
 deploy:
   stage: deploy
