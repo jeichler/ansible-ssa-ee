@@ -49,7 +49,7 @@
     pull: false
     tag: "{{ item }}"
     push_args:
-      dest: registry.gitlab.com/redhat-cop/ansible-ssa/ee-ansible-ssa:{{ item }}
+      dest: registry.gitlab.com/ansible-ssa/ee-ansible-ssa:{{ item }}
   loop:
     - "{{ ansible_ssa_tag }}"
     - latest
