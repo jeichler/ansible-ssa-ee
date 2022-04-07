@@ -1,8 +1,20 @@
 stages:
   - build
+  - check
+  - deploy
 
 build:
   stage: build
+  script:
+    - ansible-galaxy collection install -r collections/requirements.yml -f
+
+check:
+  stage: check
+  script:
+    - ansible-lint ee-ansible-ssa.yml
+
+deploy:
+  stage: deploy
   before_script:
     - declare -i ZRELEASE=`cat .z-release`
     - sed -i -e s/ZRELEASE/$ZRELEASE/ roles/ee-ansible-ssa/defaults/main.yml
