@@ -36,3 +36,11 @@ deploy:
   artifacts:
     paths:
       - ee-ansible-ssa/ansible-builder.log
+
+pages:
+  stage: deploy
+  trigger:
+    project: ansible-ssa/pages
+    branch: main
+  only:
+    - main
