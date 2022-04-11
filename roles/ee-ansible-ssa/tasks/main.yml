@@ -49,7 +49,7 @@
     pull: false
     tag: "{{ item }}"
     push_args:
-      dest: quay.io/repository/redhat_emp1/ee-ansible-ssa:{{ item }}
+      dest: quay.io/redhat_emp1/ee-ansible-ssa:{{ item }}
   loop:
     - "{{ ansible_ssa_tag }}"
     - latest

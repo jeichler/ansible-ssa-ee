@@ -51,8 +51,8 @@ ansible-builder build -f ee-ansible-ssa.yml -t ee-ansible-ssa:$tag -v 3
 
 ```bash
 podman login quay.io
-podman push ee-ansible-ssa:$tag quay.io/repository/redhat_emp1/ee-ansible-ssa:$tag
-podman push ee-ansible-ssa:$tag quay.io/repository/redhat_emp1/ee-ansible-ssa:latest
+podman push ee-ansible-ssa:$tag quay.io/redhat_emp1/ee-ansible-ssa:$tag
+podman push ee-ansible-ssa:$tag quay.io/redhat_emp1/ee-ansible-ssa:latest
 ```
 
 ## Ansible Navigator
@@ -66,13 +66,13 @@ The `--eei` command line option allows you to specify which execution environmen
 ansible-navigator:
   execution-environment:
     pull-policy: missing
-    image: quay.io/repository/redhat_emp1/ee-ansible-ssa/ee-ansible-ssa
+    image: quay.io/redhat_emp1/ee-ansible-ssa/ee-ansible-ssa
 ```
 
 **NOTE:** If `pull-policy` is set to `missing`, updated container images are not automatically downloaded. Either set the policy to `always` or manually check to make sure you use the latest version. You can manually fetch the latest image by running:
 
 ```bash
-podman pull quay.io/repository/redhat_emp1/ee-ansible-ssa/ee-ansible-ssa
+podman pull quay.io/redhat_emp1/ee-ansible-ssa/ee-ansible-ssa
 ```
 
 ## Example on how to run the Playbook
