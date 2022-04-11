@@ -5,6 +5,8 @@ dependencies:
   python: requirements.txt
   system: bindep.txt
 
+ansible_config: /home/gitlab-runner/.ansible.cfg
+
 build_arg_defaults:
   EE_BASE_IMAGE: registry.redhat.io/ansible-automation-platform-21/ee-supported-rhel8:latest
 
