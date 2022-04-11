@@ -5,11 +5,11 @@
     password: "{{ registry_redhat_password }}"
     registry: registry.redhat.io
 
-- name: log into GitLab registry
+- name: log into Quay.io registry
   containers.podman.podman_login:
-    username: "{{ registry_gitlab_username }}"
-    password: "{{ registry_gitlab_password }}"
-    registry: registry.gitlab.com
+    username: "{{ registry_quay_username }}"
+    password: "{{ registry_quay_password }}"
+    registry: quay.io
 
 - name: log into private automation hub
   containers.podman.podman_login:
@@ -49,7 +49,7 @@
     pull: false
     tag: "{{ item }}"
     push_args:
-      dest: registry.gitlab.com/ansible-ssa/ee-ansible-ssa:{{ item }}
+      dest: quay.io/repository/redhat_emp1/ee-ansible-ssa:{{ item }}
   loop:
     - "{{ ansible_ssa_tag }}"
     - latest
