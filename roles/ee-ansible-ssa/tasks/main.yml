@@ -42,7 +42,7 @@
     image: ee-ansible-ssa:{{ ansible_ssa_tag }}
     target_names: ee-ansible-ssa:latest
 
-- name: push the EE to private GitLab registry
+- name: push the EE to private Quay registry
   containers.podman.podman_image:
     name: ee-ansible-ssa
     push: true
