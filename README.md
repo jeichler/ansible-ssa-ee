@@ -4,9 +4,9 @@ ansible-builder configuration for building an Execution Environment for the [Ans
 
 ## Code only
 
-This project contains the execution environment definition file, but does not provide the actual container image. This is due to the requirement of having an active Red Hat Ansible Automation Platform subscription to be able to download some of the Collections used and the base [ee-supported-rhel8](https://catalog.redhat.com/software/containers/ansible-automation-platform-20-early-access/ee-supported-rhel8/60e4bc63c1af85c3015b8588) container image.
+This project contains the execution environment definition file, but does not provide the actual container image. This is due to the requirement of having an active Red Hat Ansible Automation Platform subscription to be able to download some of the Collections used and the base [ee-supported-rhel8](https://catalog.redhat.com/software/containers/ansible-automation-platform-21/ee-supported-rhel8/6177cff2be25a74c009224fa) container image.
 
-If you are a Red Hat Employee, you can download the Execution Environment from [Quay](quay.io) by using the [ee-ansible-ssa](https://quay.io/repository/redhat_emp1/ee-ansible-ssa) repository.
+If you are a Red Hat Employee, you can download the Execution Environment from [Quay](quay.io) by using the [ee-ansible-ssa](https://quay.io/repository/redhat_emp1/ee-ansible-ssa) repository. You will need the Employee flag in your Quay account, to get access to the repository.
 
 ```bash
 # log in with your Red Hat credentials
