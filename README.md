@@ -1,6 +1,6 @@
 # ee-ansible-ssa
 
-ansible-builder configuration for building an Execution Environment for the [Ansible SSA](https://www.ansible-labs.de) project.
+[ansible-builder](https://github.com/ansible/ansible-builder) configuration for building an Execution Environment for the [Ansible SSA](https://www.ansible-labs.de) project.
 
 ## Code only
 
