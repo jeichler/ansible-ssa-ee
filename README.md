@@ -35,6 +35,15 @@ Also synchronize the following certified content from Red Hat Automation Hub. Lo
 - name: chocolatey.chocolatey
 - name: google.cloud
 
+Also sync the following collections from [Ansible Galaxy](https://galaxy.ansible.com).
+
+- name: community.aws
+- name: community.crypto
+- name: community.general
+- name: community.windows
+- name: containers.podman
+- name: freeipa.ansible_freeipa
+
 Check the [requirements.yml](./ee-ansible-ssa/requirements.yml) for specific versions and additional details.
 
 ## Build image
