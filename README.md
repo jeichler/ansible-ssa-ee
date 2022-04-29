@@ -40,6 +40,7 @@ Also sync the following collections from [Ansible Galaxy](https://galaxy.ansible
 - name: community.aws
 - name: community.crypto
 - name: community.general
+- name: community.mysql
 - name: community.windows
 - name: containers.podman
 - name: freeipa.ansible_freeipa
