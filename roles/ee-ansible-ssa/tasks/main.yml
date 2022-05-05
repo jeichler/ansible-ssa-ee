@@ -65,3 +65,14 @@
   loop:
     - "{{ ansible_ssa_tag }}"
     - latest
+
+- name: trigger the internal CI/CD pipeline
+  ansible.builtin.uri:
+    url: https://controller.bolzchristian.de/api/v2/workflow_job_templates/CI%20-%20RHAAP%20Workflow++Default/launch/
+    method: POST
+    user: gitlab
+    password: "{{ controller_password }}"
+    force_basic_auth: true
+    status_code:
+      - 201
+      - 200

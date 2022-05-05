@@ -26,7 +26,7 @@ deploy:
     - git submodule foreach git pull --ff-only
   script:
     - ansible-galaxy collection install -r collections/requirements.yml -f
-    - ansible-playbook ee-ansible-ssa.yml
+    - ansible-playbook -e "controller_password=$controller_password" ee-ansible-ssa.yml
     - git add .z-release
     - git commit -m "[skip ci] automated build of execution environment"
     - git push "https://${GITLAB_USER_NAME}:${CI_GIT_TOKEN}@${CI_REPOSITORY_URL#*@}" HEAD:${CI_COMMIT_REF_NAME}
