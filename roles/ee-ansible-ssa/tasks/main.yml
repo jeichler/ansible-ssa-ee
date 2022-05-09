@@ -33,8 +33,7 @@
 - name: remove all existing container images
   ansible.builtin.command: podman rmi -f ee-ansible-ssa
   changed_when: true
-  when:
-    - ansible_ssa_image.images != []
+  ignore_errors: true
 
 - name: build the new EE version {{ ansible_ssa_tag }} (this might take a few minutes)
   ansible.builtin.shell: ansible-builder build -f ee-ansible-ssa.yml -t ee-ansible-ssa:{{ ansible_ssa_tag }} -v 3 &> ansible-builder.log
