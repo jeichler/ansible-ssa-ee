@@ -31,7 +31,7 @@
   register: ansible_ssa_image
 
 - name: remove all existing container images
-  ansible.builtin.command: podman rmi -f ee-ansible-ssa
+  ansible.builtin.command: podman rmi -af
   changed_when: true
   ignore_errors: true
 
