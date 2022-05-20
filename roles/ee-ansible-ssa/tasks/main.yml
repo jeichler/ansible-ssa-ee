@@ -31,7 +31,7 @@
   register: ansible_ssa_image
 
 - name: remove previously built images for ee-ansible-ssa:{{ ansible_ee_tag }}
-  ansible.builtin.command: "podman rmi {{ item.Id }}"
+  ansible.builtin.command: "podman rmi -f {{ item.Id }}"
   changed_when: true
   loop:
     "{{ ansible_ssa_image.images }}"
