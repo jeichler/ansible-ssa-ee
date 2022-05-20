@@ -17,11 +17,6 @@
     password: "{{ registry_ah_password }}"
     registry: ah.bolzchristian.de
 
-- name: remove all existing container images
-  ansible.builtin.command: podman rmi -af
-  changed_when: true
-  ignore_errors: true
-
 - name: pull latest version of ee-supported-rhel8 image
   containers.podman.podman_image:
     name: registry.redhat.io/ansible-automation-platform-21/ee-supported-rhel8
@@ -34,6 +29,14 @@
   containers.podman.podman_image_info:
     name: ee-ansible-ssa:{{ ansible_ssa_tag }}
   register: ansible_ssa_image
+
+- name: remove previously built images for ee-ansible-ssa:{{ ansible_ee_tag }}
+  ansible.builtin.command: "podman rmi {{ item.Id }}"
+  changed_when: true
+  loop:
+    "{{ ansible_ssa_image.images }}"
+  when:
+    - ansible_ssa_image.images != []
 
 - name: build the new EE version {{ ansible_ssa_tag }} (this might take a few minutes)
   ansible.builtin.shell: ansible-builder build -f ee-ansible-ssa.yml -t ee-ansible-ssa:{{ ansible_ssa_tag }} -v 3 &> ansible-builder.log
