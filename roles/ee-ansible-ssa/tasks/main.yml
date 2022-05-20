@@ -42,8 +42,7 @@
   ansible.builtin.shell: ansible-builder build -f ee-ansible-ssa.yml -t ee-ansible-ssa:{{ ansible_ssa_tag }} -v 3 &> ansible-builder.log
   args:
     chdir: ee-ansible-ssa
-  when:
-    - ansible_ssa_image.images == []
+  changed_when: true
 
 - name: apply image tags locally
   containers.podman.podman_tag:
