@@ -10,12 +10,12 @@
 - name: set latest tag for release branch
   ansible.builtin.set_fact:
     release_tag: latest
-  when: current_branch == "release"
+  when: git_branch == "release"
 
 - name: set unstable tag for main branch
   ansible.builtin.set_fact:
     release_tag: unstable
-  when: current_branch == "main"
+  when: git_branch == "main"
 
 - name: fail for unknown branches
   ansible.builtin.assert:
