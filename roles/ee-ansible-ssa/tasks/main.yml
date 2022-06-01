@@ -1,7 +1,7 @@
 ---
 - name: lookup current branch name
   ansible.builtin.set_fact:
-    current_branch: "{{ lookup ('env', 'CI_COMMIT_BRANCH') | default(omit) }}"
+    current_branch: "{{ lookup ('env', 'CI_COMMIT_REF_NAME') | default(omit) }}"
 
 - name: set latest tag for release branch
   ansible.builtin.set_fact:
@@ -16,8 +16,8 @@
 - name: fail for unknown branches
   ansible.builtin.assert:
     that: ( release_tag == "unstable" or release_tag == "latest" )
-    fail_msg: CI_COMMIT_BRANCH is not unstable or latest
-    success_msg: CI_COMMIT_BRANCH is unstable or latest
+    fail_msg: CI_COMMIT_REF_NAME is not unstable or latest
+    success_msg: CI_COMMIT_REF_NAME is unstable or latest
 
 - name: log into Red Hat registry
   containers.podman.podman_login:
