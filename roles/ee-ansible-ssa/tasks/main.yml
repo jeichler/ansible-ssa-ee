@@ -9,6 +9,10 @@
   ansible.builtin.set_fact:
     current_branch: "{{ git_branch.stdout }}"
 
+- name: current_branch
+  ansible.builtin.debug:
+    var: current_branch
+
 - name: set latest tag for release branch
   ansible.builtin.set_fact:
     release_tag: latest
