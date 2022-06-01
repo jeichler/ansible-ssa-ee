@@ -74,7 +74,7 @@
   args:
     chdir: ee-ansible-ssa
   changed_when: true
-  when: release_tag == "release"
+  when: release_tag == "latest"
 
 - name: apply image tags locally
   containers.podman.podman_tag:
