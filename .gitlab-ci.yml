@@ -13,7 +13,7 @@ check:
   script:
     - ansible-lint ee-ansible-ssa.yml
 
-deploy_amin:
+deploy:
   stage: deploy
   variables:
     ANSIBLE_FORCE_COLOR: 1
@@ -24,7 +24,7 @@ deploy_amin:
     - echo $ZRELEASE > .z-release
     - git config --global user.name "${GITLAB_USER_NAME}"
     - git config --global user.email "${GITLAB_USER_EMAIL}"
-    - git submodule foreach git checkout main
+    - git submodule foreach git checkout CI_MERGE_REQUEST_TARGET_BRANCH_NAME
     - git submodule foreach git pull --ff-only
   script:
     - ansible-galaxy collection install -r collections/requirements.yml -f
@@ -34,31 +34,6 @@ deploy_amin:
     - git push "https://${GITLAB_USER_NAME}:${CI_GIT_TOKEN}@${CI_REPOSITORY_URL#*@}" HEAD:${CI_COMMIT_REF_NAME}
   only:
     - main
-  artifacts:
-    paths:
-      - ee-ansible-ssa/ansible-builder.log
-    when: always
-
-deploy_release:
-  stage: deploy
-  variables:
-    ANSIBLE_FORCE_COLOR: 1
-  before_script:
-    - declare -i ZRELEASE=`cat .z-release`
-    - sed -i -e s/ZRELEASE/$ZRELEASE/ roles/ee-ansible-ssa/defaults/main.yml
-    - ZRELEASE+=1
-    - echo $ZRELEASE > .z-release
-    - git config --global user.name "${GITLAB_USER_NAME}"
-    - git config --global user.email "${GITLAB_USER_EMAIL}"
-    - git submodule foreach git checkout release
-    - git submodule foreach git pull --ff-only
-  script:
-    - ansible-galaxy collection install -r collections/requirements.yml -f
-    - ansible-playbook -e "controller_password=$controller_password" ee-ansible-ssa.yml
-    - git add .z-release
-    - git commit -m "[skip ci] automated build of execution environment"
-    - git push "https://${GITLAB_USER_NAME}:${CI_GIT_TOKEN}@${CI_REPOSITORY_URL#*@}" HEAD:${CI_COMMIT_REF_NAME}
-  only:
     - release
   artifacts:
     paths:
