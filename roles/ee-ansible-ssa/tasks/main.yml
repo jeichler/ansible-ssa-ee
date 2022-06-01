@@ -1,4 +1,8 @@
 ---
+- name: test
+  ansible.builtin.debug:
+    msg: "{{ lookup ('env', 'CI_COMMIT_BRANCH' ) }}"
+
 - name: get current branch name
   ansible.builtin.command:
     cmd: git rev-parse --abbrev-ref HEAD
