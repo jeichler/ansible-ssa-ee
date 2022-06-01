@@ -5,6 +5,7 @@
         "EE's",
         "epel",
         "freeipa",
+        "mysql",
         "nsupdate",
         "podman",
         "posix",

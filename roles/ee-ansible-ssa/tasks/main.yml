@@ -1,4 +1,24 @@
 ---
+- name: lookup current branch name
+  ansible.builtin.set_fact:
+    current_branch: "{{ lookup ('env', 'CI_COMMIT_BRANCH') | default(omit) }}"
+
+- name: set latest tag for release branch
+  ansible.builtin.set_fact:
+    release_tag: latest
+  when: current_branch == "release"
+
+- name: set unstable tag for main branch
+  ansible.builtin.set_fact:
+    release_tag: unstable
+  when: current_branch == "main"
+
+- name: fail for unknown branches
+  ansible.builtin.assert:
+    that: ( release_tag == "unstable" or release_tag == "latest" )
+    fail_msg: CI_COMMIT_BRANCH is not unstable or latest
+    success_msg: CI_COMMIT_BRANCH is unstable or latest
+
 - name: log into Red Hat registry
   containers.podman.podman_login:
     username: "{{ registry_redhat_username }}"
@@ -38,16 +58,24 @@
   when:
     - ansible_ssa_image.images != []
 
+- name: build the new unstable EE version {{ ansible_ssa_tag }} (this might take a few minutes)
+  ansible.builtin.shell: ansible-builder build -f ee-ansible-ssa.yml -t ee-ansible-ssa:{{ ansible_ssa_tag }} -v 3 &> ansible-builder.log
+  args:
+    chdir: ee-ansible-ssa
+  changed_when: true
+  when: release_tag == "unstable"
+
 - name: build the new EE version {{ ansible_ssa_tag }} (this might take a few minutes)
   ansible.builtin.shell: ansible-builder build -f ee-ansible-ssa.yml -t ee-ansible-ssa:{{ ansible_ssa_tag }} -v 3 &> ansible-builder.log
   args:
     chdir: ee-ansible-ssa
   changed_when: true
+  when: release_tag == "release"
 
 - name: apply image tags locally
   containers.podman.podman_tag:
     image: ee-ansible-ssa:{{ ansible_ssa_tag }}
-    target_names: ee-ansible-ssa:latest
+    target_names: ee-ansible-ssa:{{ release_tag }}
 
 - name: push the EE to private Quay registry
   containers.podman.podman_image:
@@ -59,7 +87,7 @@
       dest: quay.io/redhat_emp1/ee-ansible-ssa:{{ item }}
   loop:
     - "{{ ansible_ssa_tag }}"
-    - latest
+    - "{{ release_tag }}"
 
 - name: push the EE to private automation hub
   containers.podman.podman_image:
@@ -71,7 +99,7 @@
       dest: ah.bolzchristian.de/ee-ansible-ssa:{{ item }}
   loop:
     - "{{ ansible_ssa_tag }}"
-    - latest
+    - "{{ release_tag }}"
 
 - name: trigger the internal CI/CD pipeline
   ansible.builtin.uri:

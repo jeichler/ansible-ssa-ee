@@ -24,7 +24,7 @@ deploy:
     - echo $ZRELEASE > .z-release
     - git config --global user.name "${GITLAB_USER_NAME}"
     - git config --global user.email "${GITLAB_USER_EMAIL}"
-    - git submodule foreach git checkout main
+    - git submodule foreach git checkout CI_COMMIT_BRANCH
     - git submodule foreach git pull --ff-only
   script:
     - ansible-galaxy collection install -r collections/requirements.yml -f
