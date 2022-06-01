@@ -1,7 +1,13 @@
 ---
+- name: get current branch name
+  ansible.builtin.command:
+    cmd: git rev-parse --abbrev-ref HEAD
+  register: git_branch
+  changed_when: false
+
 - name: lookup current branch name
   ansible.builtin.set_fact:
-    current_branch: "{{ lookup ('env', 'CI_COMMIT_REF_NAME') | default(omit) }}"
+    current_branch: "{{ git_branch.stdout }}"
 
 - name: set latest tag for release branch
   ansible.builtin.set_fact:
