@@ -22,7 +22,7 @@ collections:
   - name: community.mysql
     version: 3.1.3
   - name: community.windows
-    version: 1.9.0
+    version: 1.10.0
   - name: containers.podman
     version: 1.9.3
   - name: freeipa.ansible_freeipa
