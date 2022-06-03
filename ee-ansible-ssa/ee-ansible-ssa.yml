@@ -9,6 +9,7 @@ ansible_config: /home/gitlab-runner/.ansible.cfg
 
 build_arg_defaults:
   EE_BASE_IMAGE: registry.redhat.io/ansible-automation-platform-21/ee-supported-rhel8:latest
+  ANSIBLE_GALAXY_CLI_COLLECTION_OPTS: -f
 
 additional_build_steps:
   prepend: |
