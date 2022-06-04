@@ -20,8 +20,8 @@
 - name: fail for unknown branches
   ansible.builtin.assert:
     that: ( release_tag == "unstable" or release_tag == "latest" )
-    fail_msg: CI_COMMIT_REF_NAME is not unstable or latest
-    success_msg: CI_COMMIT_REF_NAME is unstable or latest
+    fail_msg: CI_COMMIT_BRANCH is not unstable or latest
+    success_msg: CI_COMMIT_BRANCH is unstable or latest
 
 - name: log into Red Hat registry
   containers.podman.podman_login:
