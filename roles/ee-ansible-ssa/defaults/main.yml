@@ -1,5 +1,5 @@
 ---
-ansible_ssa_tag: 1.0.0.ZRELEASE
+ansible_ssa_tag: 1.1.0.ZRELEASE
 
 registry_redhat_username: "{{ vault_registry_redhat_username }}"
 registry_redhat_password: "{{ vault_registry_redhat_password }}"
