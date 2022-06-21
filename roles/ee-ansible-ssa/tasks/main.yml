@@ -53,7 +53,7 @@
   containers.podman.podman_image:
     name: registry.redhat.io/ansible-automation-platform-21/ansible-builder-rhel8
 
-- name: build the new unstable EE version {{ ansible_ssa_tag }} (this might take a few minutes)
+- name: build the new {{ release_tag }} EE version {{ ansible_ssa_tag }} (this might take a few minutes)
   ansible.builtin.shell: ansible-builder build -f ee-ansible-ssa.yml -t ee-ansible-ssa:{{ ansible_ssa_tag }} -v 3 &> ansible-builder.log
   args:
     chdir: ee-ansible-ssa
