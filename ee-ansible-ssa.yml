@@ -18,6 +18,7 @@
         state: absent
         path: "{{ lock_file_path }}"
         timeout: 7200
+        sleep: 15
 
     - name: create lock file
       ansible.builtin.file:
