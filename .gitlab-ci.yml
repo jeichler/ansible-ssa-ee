@@ -32,6 +32,7 @@ deploy:
     - git add .z-release
     - git commit -m "[skip ci] automated build of execution environment"
     - git push "https://${GITLAB_USER_NAME}:${CI_GIT_TOKEN}@${CI_REPOSITORY_URL#*@}" HEAD:${CI_COMMIT_REF_NAME}
+    - rm -f /tmp/ansible-builder.lock
   only:
     - main
     - release
