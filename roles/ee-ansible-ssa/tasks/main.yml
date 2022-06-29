@@ -41,9 +41,28 @@
     password: "{{ registry_ah_password }}"
     registry: ah.bolzchristian.de
 
-- name: remove all existing images
-  ansible.builtin.command: "podman rmi -af"
-  changed_when: true
+- name: get list of EE images
+  containers.podman.podman_image_info:
+  register: podman_image_list
+
+- name: initialize list of images to be deleted
+  ansible.builtin.set_fact:
+    image_delete_list: []
+
+- name: search for existing EE images
+  ansible.builtin.set_fact:
+    image_delete_list: "{{ image_delete_list + [ item.NamesHistory[0] ] }}"
+  loop:
+    "{{ podman_image_list.images }}"
+  when: item.NamesHistory[0] is search ("ee-ansible-ssa")
+
+- name: delete images
+  containers.podman.podman_image:
+    name: "{{ item }}"
+    state: absent
+  loop:
+    "{{ image_delete_list }}"
+  when: image_delete_list != []
 
 - name: pull latest version of ee-supported-rhel8 image
   containers.podman.podman_image:
