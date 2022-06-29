@@ -1,0 +1,18 @@
+---
+- name: initialize list of images to be deleted
+  ansible.builtin.set_fact:
+    image_delete_list: []
+
+- name: get all names for EE image
+  ansible.builtin.set_fact:
+    image_delete_list: "{{ image_delete_list + [ item ] }}"
+  loop:
+    "{{ image.NamesHistory }}"
+
+- name: delete images
+  containers.podman.podman_image:
+    name: "{{ item }}"
+    state: absent
+  loop:
+    "{{ image_delete_list }}"
+  when: image_delete_list != []
