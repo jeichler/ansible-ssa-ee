@@ -45,24 +45,13 @@
   containers.podman.podman_image_info:
   register: podman_image_list
 
-- name: initialize list of images to be deleted
-  ansible.builtin.set_fact:
-    image_delete_list: []
-
 - name: search for existing EE images
-  ansible.builtin.set_fact:
-    image_delete_list: "{{ image_delete_list + [ item.NamesHistory[0] ] }}"
+  ansible.builtin.include_tasks: delete_image.yml
+  vars:
+    image: "{{ item }}"
   loop:
     "{{ podman_image_list.images }}"
   when: item.NamesHistory[0] is search ("ee-ansible-ssa")
-
-- name: delete images
-  containers.podman.podman_image:
-    name: "{{ item }}"
-    state: absent
-  loop:
-    "{{ image_delete_list }}"
-  when: image_delete_list != []
 
 - name: pull latest version of ee-supported-rhel8 image
   containers.podman.podman_image:
