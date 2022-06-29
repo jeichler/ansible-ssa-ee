@@ -25,3 +25,9 @@
         path: "{{ lock_file_path }}"
         state: touch
         mode: 0644
+
+  post_tasks:
+    - name: remove lock file
+      ansible.builtin.file:
+        path: "{{ lock_file_path }}"
+        state: absent
