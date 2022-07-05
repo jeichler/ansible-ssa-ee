@@ -54,7 +54,7 @@
   when: item.NamesHistory[0] is search ("ee-ansible-ssa")
 
 - name: prune dangling images
-  ansible.builtin.command: podman prune images -f
+  ansible.builtin.command: podman image prune -f
   changed_when: true
 
 - name: pull latest version of ee-supported-rhel8 image
