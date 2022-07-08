@@ -26,7 +26,7 @@ collections:
   - name: containers.podman
     version: 1.9.4
   - name: freeipa.ansible_freeipa
-    version: 1.7.0
+    version: 1.8.1
   - name: google.cloud
     version: 1.0.2
   - name: redhat.rhel_system_roles
